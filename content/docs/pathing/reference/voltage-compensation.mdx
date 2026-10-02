@@ -1,0 +1,76 @@
+---
+title: Voltage Compensation
+description: Making paths drive the same on any battery
+icon: BatteryCharging
+---
+
+A motor's speed depends on the voltage behind it. Pedro's tune is measured on one battery. A fresher battery makes the same path run faster and overshoot, and a tired one makes it run slower. Voltage compensation scales Pedro's drive power so every battery drives like the one you tuned with:
+
+```
+power sent to the motors = Pedro's power × nominalVoltage / battery voltage
+```
+
+## What gets scaled
+
+Pedro's follower is always in one of four modes. Compensation applies whenever **Pedro** is choosing the power:
+
+| Follower mode | Started by | Scaled? |
+|---|---|---|
+| `FOLLOW` | `follower.follow(path)` | Yes |
+| `HOLD` | the end of a path (when `holdEnd` is true, the default), `follower.hold(pose)`, or teleop's `ManualDrive.driveOrHold()` when the sticks are released | Yes |
+| `MANUAL` | `follower.manual(...)` | No. Your sticks are unchanged. |
+| `IDLE` | `follower.stop()`, or the end of a path when `holdEnd` is false | Nothing is driven |
+
+### What is holding?
+
+When a path finishes, Pedro doesn't just cut power. It switches to `HOLD` and keeps running its correction controllers (translational, heading) to keep the robot on the path's final pose. If another robot pushes you, the robot drives back to that pose. It holds until you call `follow`, `manual`, `stop`, or `hold` with a new pose.
+
+Holding powers are usually small corrections. Compensation scales them too, so a pushed robot recovers with the same force on any battery.
+
+```java title="MyAuto.java"
+follower.follow(scorePath);   // FOLLOW: compensated
+// ... path ends, Pedro switches to HOLD at the path's end pose: compensated
+follower.hold(parkPose);      // HOLD somewhere else: compensated
+follower.stop();              // IDLE: nothing
+```
+
+## Setup
+
+```java title="Constants.java"
+public static DromosConfig dromosConfig = new DromosConfig(c -> {
+    c.voltageCompensation.set(true);
+    c.nominalVoltage.set(12.4);   // from the Voltage Compensation Tuner
+});
+
+public static Follower create(HardwareMap h) {
+    Dromos dromos = new Dromos(h, dromosConfig);
+    return new Follower(
+        dromos.localizer(new PinpointLocalizer(h, localizerConfig)),
+        dromos.drivetrain(new Mecanum(h, drivetrainConfig)),   // compensation lives here
+        new Foresight(foresightConfig)
+    );
+}
+```
+
+<Callout title="nominalVoltage keeps your tune valid" type="warning">
+    `nominalVoltage` must be the battery voltage **during Pedro tuning**. If it's wrong, every path is scaled away from what Pedro measured. Don't guess it: run the [Voltage Compensation Tuner](/docs/pathing/reference/voltage-tuner).
+</Callout>
+
+<Callout title="Swerve" type="warning">
+    Pedro's `Swerve` drivetrain has its own voltage compensation, and `SwerveConfig` makes you set `voltageCompensation` explicitly.
+    To use ElectroDromos's, set Pedro's to `false`. If both are on, `dromos.drivetrain(...)` throws an `IllegalStateException` when the OpMode initializes, instead of letting power be scaled twice.
+    ElectroDromos also refuses to wrap a drivetrain it has already compensated.
+</Callout>
+
+## How it behaves
+
+- **Sampling:** the battery is read every 250 ms. Voltage isn't part of the bulk read, so each read costs a little loop time. Readings are smoothed (filter gain 0.5), and readings at or below 1 V are ignored.
+- **Clamp:** the scale is kept between 0.5× and 1.5×, so one bad reading can't make the robot lurch.
+- **Foresight headroom:** Foresight is told how much power is really left after scaling, so its braking and correction stay accurate.
+- **Debug:** `follower.drivetrain.debug()` includes `voltage` and `voltageScale`.
+
+## Limits
+
+- **It can't add power the battery doesn't have.** If a path already asks for full power, a low battery still means a slower robot.
+- **Voltage drops under load.** Hard acceleration pulls the battery down, which briefly raises the scale. The 250 ms sampling and smoothing damp this, but it isn't zero.
+- **Pedro's tuners are never compensated.** That's intentional: they must measure the raw drivetrain.

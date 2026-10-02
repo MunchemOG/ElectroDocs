@@ -1,0 +1,34 @@
+---
+title: Prerequisites
+description: What you need before using Pedro Pathing with ElectroDromos
+---
+
+ElectroDromos runs on top of Pedro Pathing, so you need everything Pedro needs, plus a recent enough Pedro.
+
+### Holonomic Drive
+
+You have some kind of holonomic drivetrain. Pedro Pathing supports **Mecanum** and **Swerve** out of the box, but any holonomic drivetrain could be used. ElectroDromos works with any Pedro `Drivetrain`.
+
+### Localization
+
+The robot needs a way to know where it is on the field. Pedro Pathing supports **Pinpoint**, **OctoQuad**, **OTOS**, **Two Wheel**, **Three Wheel**, and **Three Wheel IMU**. ElectroDromos works with any Pedro `Localizer`.
+
+### Pedro Pathing 3.0.1 or newer
+
+ElectroDromos needs **Pedro Pathing 3.0.1** or newer and Pedro's tuning module **1.0.1**. Pedro 2 and early Pedro 3 alphas are not supported. See [Upgrading to Pedro 3](/docs/pathing/pedro3).
+
+### REV hubs
+
+[Voltage compensation](/docs/pathing/reference/voltage-compensation) reads the battery through the hub's voltage sensor.
+
+### FTC SDK 11.2 or newer
+
+ElectroDromos is built against FTC SDK 11.2 and tested with 12.0.
+
+### Programming Platform
+
+You **must** use **Android Studio**. Pedro Pathing and ElectroDromos do **not** work with OnBot Java or Blocks.
+
+## Next Steps
+
+Once you have all of these, [proceed to installation](/docs/pathing/installation).

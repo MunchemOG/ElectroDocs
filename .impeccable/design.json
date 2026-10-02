@@ -1,0 +1,631 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T07:36:29+00:00",
+  "title": "Design System: ElectroDromos Docs",
+  "extensions": {
+    "colorMeta": {
+      "dromos-black": {
+        "role": "neutral",
+        "displayName": "Dromos Black",
+        "canonical": "#08090B",
+        "oklch": "oklch(13.9% 0.005 262.8)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#232426",
+          "#3E4042",
+          "#5C5E60",
+          "#7C7D80",
+          "#9D9EA1",
+          "#C2C4C7",
+          "#EDEEF2"
+        ]
+      },
+      "dromos-panel": {
+        "role": "neutral",
+        "displayName": "Dromos Panel",
+        "canonical": "#111317",
+        "oklch": "oklch(18.6% 0.009 264.3)",
+        "tonalRamp": [
+          "#090B0F",
+          "#222428",
+          "#3D4045",
+          "#5B5E63",
+          "#7B7D83",
+          "#9C9EA4",
+          "#C1C4CA",
+          "#EBEEF5"
+        ]
+      },
+      "panel-muted": {
+        "role": "neutral",
+        "displayName": "Panel Muted",
+        "canonical": "#15181C",
+        "oklch": "oklch(20.8% 0.009 255.6)",
+        "tonalRamp": [
+          "#090B0F",
+          "#212429",
+          "#3D4045",
+          "#5A5E63",
+          "#7A7E83",
+          "#9B9FA4",
+          "#C0C4CA",
+          "#EAEFF5"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#23272D",
+        "oklch": "oklch(27.1% 0.013 258.4)",
+        "tonalRamp": [
+          "#080B10",
+          "#20242A",
+          "#3C4047",
+          "#595E65",
+          "#797E85",
+          "#9A9FA6",
+          "#BFC4CC",
+          "#E9EFF7"
+        ]
+      },
+      "muted-text": {
+        "role": "neutral",
+        "displayName": "Muted Text",
+        "canonical": "#9AA3AB",
+        "oklch": "oklch(71.1% 0.016 244.8)",
+        "tonalRamp": [
+          "#060C11",
+          "#1E252B",
+          "#394148",
+          "#575F66",
+          "#767E86",
+          "#97A0A8",
+          "#BCC5CE",
+          "#E6F0F8"
+        ]
+      },
+      "dromos-white": {
+        "role": "neutral",
+        "displayName": "Dromos White",
+        "canonical": "#F4F6F7",
+        "oklch": "oklch(97.2% 0.003 228.8)",
+        "tonalRamp": [
+          "#0A0B0C",
+          "#232425",
+          "#3E4041",
+          "#5C5E5F",
+          "#7C7D7E",
+          "#9D9FA0",
+          "#C2C4C5",
+          "#EDEFF0"
+        ]
+      },
+      "dromos-cyan": {
+        "role": "primary",
+        "displayName": "Signal Cyan",
+        "canonical": "#19E3E8",
+        "oklch": "oklch(83.2% 0.139 197.7)",
+        "tonalRamp": [
+          "#000F0F",
+          "#002A2C",
+          "#004A4C",
+          "#0B6B6D",
+          "#098F92",
+          "#01B4B9",
+          "#06DFE4",
+          "#B8FDFF"
+        ]
+      },
+      "cyan-ink": {
+        "role": "primary",
+        "displayName": "Cyan Ink",
+        "canonical": "#041416",
+        "oklch": "oklch(17.8% 0.023 205.4)",
+        "tonalRamp": [
+          "#010E10",
+          "#162729",
+          "#314346",
+          "#4F6264",
+          "#6E8284",
+          "#8EA3A5",
+          "#B4C9CB",
+          "#DDF3F6"
+        ]
+      },
+      "cyan-wash": {
+        "role": "primary",
+        "displayName": "Cyan Wash",
+        "canonical": "#0F2A2C",
+        "oklch": "oklch(26.5% 0.033 201.9)",
+        "tonalRamp": [
+          "#000F11",
+          "#0E292B",
+          "#2A4547",
+          "#486365",
+          "#678386",
+          "#87A5A7",
+          "#ACCBCD",
+          "#D6F6F8"
+        ]
+      },
+      "dromos-red": {
+        "role": "secondary",
+        "displayName": "Battery Red",
+        "canonical": "#FF4B3A",
+        "oklch": "oklch(66.9% 0.219 29.5)",
+        "tonalRamp": [
+          "#220000",
+          "#4C0000",
+          "#7E0000",
+          "#B10702",
+          "#E22A1D",
+          "#FE6654",
+          "#FEAC9F",
+          "#FEE9E5"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#F6F7F8",
+        "oklch": "oklch(97.6% 0.002 247.8)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#232425",
+          "#3F4041",
+          "#5D5E5E",
+          "#7C7D7E",
+          "#9D9E9F",
+          "#C3C4C5",
+          "#EDEEEF"
+        ]
+      },
+      "paper-card": {
+        "role": "neutral",
+        "displayName": "Paper Card",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242424",
+          "#404040",
+          "#5D5D5D",
+          "#7D7D7D",
+          "#9E9E9E",
+          "#C4C4C4",
+          "#EEEEEE"
+        ]
+      },
+      "paper-muted": {
+        "role": "neutral",
+        "displayName": "Paper Muted",
+        "canonical": "#ECEEF0",
+        "oklch": "oklch(94.8% 0.003 247.9)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#232426",
+          "#3E4041",
+          "#5C5E5F",
+          "#7C7D7F",
+          "#9D9FA0",
+          "#C2C4C6",
+          "#EDEFF1"
+        ]
+      },
+      "paper-hairline": {
+        "role": "neutral",
+        "displayName": "Paper Hairline",
+        "canonical": "#D9DDE1",
+        "oklch": "oklch(89.6% 0.007 247.9)",
+        "tonalRamp": [
+          "#090B0E",
+          "#212427",
+          "#3D4043",
+          "#5B5E61",
+          "#7A7E81",
+          "#9B9FA3",
+          "#C1C5C8",
+          "#EBEFF3"
+        ]
+      },
+      "paper-muted-text": {
+        "role": "neutral",
+        "displayName": "Paper Muted Text",
+        "canonical": "#4F5861",
+        "oklch": "oklch(45.6% 0.019 248.2)",
+        "tonalRamp": [
+          "#060C13",
+          "#1D252D",
+          "#384149",
+          "#565F68",
+          "#757E88",
+          "#96A0AA",
+          "#BBC5D0",
+          "#E5F0FB"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#0B0D10",
+        "oklch": "oklch(15.8% 0.007 258.4)",
+        "tonalRamp": [
+          "#090B0E",
+          "#222428",
+          "#3D4044",
+          "#5B5E62",
+          "#7B7D82",
+          "#9C9FA3",
+          "#C1C4C9",
+          "#EBEFF3"
+        ]
+      },
+      "signal-deep": {
+        "role": "primary",
+        "displayName": "Deep Signal",
+        "canonical": "#007A80",
+        "oklch": "oklch(52.7% 0.090 200.8)",
+        "tonalRamp": [
+          "#000F10",
+          "#002A2D",
+          "#08494D",
+          "#086B70",
+          "#278D93",
+          "#50AFB5",
+          "#78D6DC",
+          "#C0FBFF"
+        ]
+      },
+      "signal-deep-wash": {
+        "role": "primary",
+        "displayName": "Deep Signal Wash",
+        "canonical": "#E1F6F7",
+        "oklch": "oklch(95.8% 0.022 200.3)",
+        "tonalRamp": [
+          "#010E0F",
+          "#172728",
+          "#324344",
+          "#4F6263",
+          "#6F8182",
+          "#8FA3A4",
+          "#B4C9CA",
+          "#DEF3F4"
+        ]
+      },
+      "battery-deep": {
+        "role": "secondary",
+        "displayName": "Deep Battery",
+        "canonical": "#C42E1F",
+        "oklch": "oklch(53.9% 0.189 30.0)",
+        "tonalRamp": [
+          "#220000",
+          "#4C0000",
+          "#7C0500",
+          "#AF1205",
+          "#D64130",
+          "#FE6652",
+          "#FEAC9E",
+          "#FEE9E5"
+        ]
+      },
+      "wordmark-cyan-light": {
+        "role": "primary",
+        "displayName": "Wordmark Cyan Light",
+        "canonical": "#0A8F94",
+        "oklch": "oklch(59.1% 0.099 199.2)",
+        "tonalRamp": [
+          "#000F10",
+          "#002A2C",
+          "#004A4D",
+          "#0B6B6F",
+          "#098F94",
+          "#42B1B6",
+          "#6DD8DC",
+          "#BCFCFF"
+        ]
+      }
+    },
+    "themeMap": {
+      "description": "Theme-aware roles in app/global.css; dark is .dark, light is @theme default.",
+      "fd-primary": {
+        "dark": "dromos-cyan",
+        "light": "signal-deep"
+      },
+      "dromos-signal": {
+        "dark": "dromos-cyan",
+        "light": "signal-deep"
+      },
+      "dromos-battery": {
+        "dark": "dromos-red",
+        "light": "battery-deep"
+      },
+      "fd-background": {
+        "dark": "dromos-black",
+        "light": "paper"
+      },
+      "fd-card": {
+        "dark": "dromos-panel",
+        "light": "paper-card"
+      },
+      "fd-muted": {
+        "dark": "panel-muted",
+        "light": "paper-muted"
+      },
+      "fd-border": {
+        "dark": "hairline",
+        "light": "paper-hairline"
+      },
+      "fd-muted-foreground": {
+        "dark": "muted-text",
+        "light": "paper-muted-text"
+      },
+      "fd-foreground": {
+        "dark": "dromos-white",
+        "light": "ink"
+      },
+      "fd-accent": {
+        "dark": "cyan-wash",
+        "light": "signal-deep-wash"
+      }
+    },
+    "codeTheme": {
+      "dark": {
+        "bg": "#111317",
+        "fg": "#D7DDE1",
+        "comment": "#6B7580 italic",
+        "keyword": "#19E3E8",
+        "annotation": "#19E3E8",
+        "type": "#F4F6F7",
+        "func": "#8FEFF2",
+        "string": "#B8C4CB",
+        "number": "#F4F6F7",
+        "tag": "#19E3E8"
+      },
+      "light": {
+        "bg": "#FFFFFF",
+        "fg": "#1C2126",
+        "comment": "#6E7881 italic",
+        "keyword": "#007A80",
+        "annotation": "#007A80",
+        "type": "#0B0D10",
+        "func": "#005A5E",
+        "string": "#4F5861",
+        "number": "#0B0D10",
+        "tag": "#007A80"
+      },
+      "source": "lib/code-theme.ts"
+    },
+    "brandThread": {
+      "value": "linear-gradient(90deg, var(--color-dromos-signal) 0 78%, transparent 78% 78.6%, var(--color-dromos-battery) 78.6% 100%)",
+      "height": "2px (6px in OG images)",
+      "position": "fixed, top of viewport, z-index 60"
+    },
+    "mark": {
+      "construction": "Two tapered polygons on a 64-unit grid, left 13,12 24,12 32,37 32,54 (cyan), right 51,12 40,12 32,37 32,54 (red), skewX(-10) about (32,33).",
+      "files": [
+        "public/logo-mark.svg",
+        "public/logo-mark-transparent.svg",
+        "public/logo-wordmark.svg",
+        "public/logo-wordmark-light.svg",
+        "public/og-banner.png"
+      ],
+      "generator": "scripts/make-logo.py (Chakra Petch Bold Italic outlined)",
+      "pending": "User has not yet confirmed the mark without speed bars; recorded as built."
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Docs-home h1 only; second line in Signal Cyan."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Landing section headings; all h1-h4 use Chakra Petch at -0.01em, balanced."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Feature-row names, card titles (1.25rem), Signal Strip caption."
+      },
+      "readout": {
+        "displayName": "Readout",
+        "purpose": "Live values (Battery, voltageScale) with tabular figures."
+      },
+      "lockup": {
+        "displayName": "Lockup",
+        "purpose": "Nav name, bold italic uppercase; Dromos in cyan."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Landing pitch paragraphs, ~65ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Docs prose, descriptions, footer."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Segmented controls, readout terms, fine print."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Chart axes and illustration disclaimer."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hover-lift",
+        "value": "0 12px 32px -16px rgb(0 0 0 / 0.6)",
+        "purpose": "Section-picker cards on hover only, with translateY(-4px) and cyan border."
+      }
+    ],
+    "focus": {
+      "value": "2px solid var(--color-fd-ring)",
+      "offset": "2px"
+    },
+    "motion": [
+      {
+        "name": "ease-signal",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Signal Strip draw (1.4s, once) and battery rescale (520ms)."
+      },
+      {
+        "name": "card-lift",
+        "value": "300ms ease-out",
+        "purpose": "Section-picker card border, lift and shadow."
+      },
+      {
+        "name": "control",
+        "value": "200ms",
+        "purpose": "Segment color and feature-row arrow slide."
+      },
+      {
+        "name": "typed-heading",
+        "value": "TypeIt speed 70, delete 40, 1200ms pause, no loop, no cursor",
+        "purpose": "Docs-home h1 settles once on the thesis; static under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Cyan pill for the one primary action per view (Get Started, primary download).",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Get Started <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 24px; border-radius: 9999px; background: #19E3E8; color: #041416; font-family: Barlow, ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 16px; text-decoration: none; transition: filter 150ms; } .ds-btn-primary:hover { filter: brightness(1.1); } .ds-btn-primary:focus-visible { outline: 2px solid #19E3E8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Hairline pill for secondary actions (GitHub, downloads); border and text turn cyan on hover.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">GitHub</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 24px; border-radius: 9999px; border: 1px solid #23272D; background: transparent; color: #F4F6F7; font-family: Barlow, ui-sans-serif, system-ui, sans-serif; font-weight: 500; font-size: 16px; text-decoration: none; transition: color 150ms, border-color 150ms; } .ds-btn-secondary:hover { border-color: #19E3E8; color: #19E3E8; } .ds-btn-secondary:focus-visible { outline: 2px solid #19E3E8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Battery Segmented Control",
+      "kind": "chip",
+      "refersTo": "segment-active",
+      "description": "Pill radiogroup; the active segment fills cyan. Used for the Signal Strip battery toggle.",
+      "html": "<div class=\"ds-seg\" role=\"radiogroup\" aria-label=\"Battery\"><button class=\"ds-seg-item\" role=\"radio\" aria-checked=\"false\">Fresh 13.4 V</button><button class=\"ds-seg-item\" role=\"radio\" aria-checked=\"false\">Tuned 12.6 V</button><button class=\"ds-seg-item is-active\" role=\"radio\" aria-checked=\"true\">Tired 11.9 V</button></div>",
+      "css": ".ds-seg { display: inline-flex; padding: 4px; border: 1px solid #23272D; border-radius: 9999px; } .ds-seg-item { border: 0; background: transparent; color: #9AA3AB; padding: 6px 14px; border-radius: 9999px; font-family: Barlow, ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums; cursor: pointer; transition: color 200ms, background-color 200ms; } .ds-seg-item:hover { color: #F4F6F7; } .ds-seg-item.is-active { background: #19E3E8; color: #041416; } .ds-seg-item:focus-visible { outline: 2px solid #19E3E8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Navigation Lockup",
+      "kind": "nav",
+      "refersTo": "lockup",
+      "description": "Nav title: transparent bicolor V plus uppercase italic Chakra Petch name, Dromos in cyan.",
+      "html": "<a class=\"ds-lockup\" href=\"#\"><svg width=\"28\" height=\"27\" viewBox=\"8 10 48 46\" aria-hidden=\"true\"><g transform=\"translate(32 33) skewX(-10) translate(-32 -33)\"><polygon points=\"13,12 24,12 32,37 32,54\" fill=\"#19E3E8\"/><polygon points=\"51,12 40,12 32,37 32,54\" fill=\"#FF4B3A\"/></g></svg><span>Electro<span class=\"ds-lockup-accent\">Dromos</span></span></a>",
+      "css": ".ds-lockup { display: inline-flex; align-items: center; gap: 8px; color: #F4F6F7; text-decoration: none; font-family: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: 0.025em; font-size: 16px; } .ds-lockup-accent { color: #19E3E8; } .ds-lockup:focus-visible { outline: 2px solid #19E3E8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Feature Row",
+      "kind": "custom",
+      "refersTo": "feature-row",
+      "description": "One row per ElectroDromos feature: cyan Lucide icon, Chakra title, Barlow line, arrow that slides on hover.",
+      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-row-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z\"/><path d=\"m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65\"/><path d=\"m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65\"/></svg></span><span class=\"ds-row-text\"><span class=\"ds-row-title\">Bulk caching</span><span class=\"ds-row-line\">Every hub read once per loop instead of once per sensor.</span></span><span class=\"ds-row-arrow\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></span></a>",
+      "css": ".ds-row { display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: center; gap: 16px; padding: 16px 4px; border-top: 1px solid #23272D; border-bottom: 1px solid #23272D; color: #F4F6F7; text-decoration: none; transition: background-color 150ms; } .ds-row:hover { background: rgb(15 42 44 / 0.4); } .ds-row-icon { color: #19E3E8; display: flex; } .ds-row-title { display: block; font-family: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 18px; transition: color 150ms; } .ds-row-line { display: block; font-family: Barlow, ui-sans-serif, system-ui, sans-serif; color: #9AA3AB; font-size: 16px; } .ds-row-arrow { color: #9AA3AB; display: flex; transition: transform 200ms, color 200ms; } .ds-row:hover .ds-row-title, .ds-row:hover .ds-row-arrow { color: #19E3E8; } .ds-row:hover .ds-row-arrow { transform: translateX(4px); } .ds-row:focus-visible { outline: 2px solid #19E3E8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Section Card",
+      "kind": "card",
+      "refersTo": "panel-card",
+      "description": "Section-picker card: panel, hairline, 16px corners, bordered icon tile; lifts with a cyan border on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-head\"><span class=\"ds-card-tile\"><svg width=\"100%\" height=\"100%\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg></span><span class=\"ds-card-title\">Docs</span><span class=\"ds-card-arrow\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></span></span><p class=\"ds-card-desc\">Install ElectroDromos, reference and guides</p></a>",
+      "css": ".ds-card { display: block; max-width: 360px; padding: 24px; background: #111317; border: 1px solid #23272D; border-radius: 16px; color: #F4F6F7; text-decoration: none; transition: border-color 300ms ease-out, transform 300ms ease-out, box-shadow 300ms ease-out; } .ds-card:hover { transform: translateY(-4px); border-color: #19E3E8; box-shadow: 0 12px 32px -16px rgb(0 0 0 / 0.6); } .ds-card:focus-visible { outline: 2px solid #19E3E8; outline-offset: 2px; } .ds-card-head { display: flex; align-items: center; gap: 16px; } .ds-card-tile { width: 48px; height: 48px; padding: 10px; box-sizing: border-box; border: 2px solid #19E3E8; border-radius: 12px; color: #19E3E8; flex-shrink: 0; } .ds-card-title { font-family: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 20px; flex: 1; } .ds-card-arrow { color: #9AA3AB; display: flex; transition: color 300ms, transform 300ms; } .ds-card:hover .ds-card-arrow { color: #19E3E8; transform: translate(2px, -2px); } .ds-card-desc { margin: 16px 0 0; font-family: Barlow, ui-sans-serif, system-ui, sans-serif; color: #9AA3AB; }"
+    },
+    {
+      "name": "Signal Strip",
+      "kind": "custom",
+      "refersTo": "panel-card",
+      "description": "Signature figure: dashed red uncompensated line vs solid cyan compensated line on hairline grid, with readouts.",
+      "html": "<figure class=\"ds-strip\"><figcaption class=\"ds-strip-title\">Same path, three batteries</figcaption><div class=\"ds-strip-body\"><svg viewBox=\"0 0 640 204\" class=\"ds-strip-chart\" aria-hidden=\"true\"><g stroke=\"#23272D\" stroke-width=\"1\"><line x1=\"44\" x2=\"620\" y1=\"196\" y2=\"196\"/><line x1=\"44\" x2=\"620\" y1=\"138\" y2=\"138\"/><line x1=\"44\" x2=\"620\" y1=\"80\" y2=\"80\"/><line x1=\"44\" x2=\"620\" y1=\"21\" y2=\"21\"/><line x1=\"44\" x2=\"44\" y1=\"20\" y2=\"196\"/><line x1=\"332\" x2=\"332\" y1=\"20\" y2=\"196\"/><line x1=\"620\" x2=\"620\" y1=\"20\" y2=\"196\"/></g><path d=\"M44 196 C110 196 130 87 182 87 L470 87 C520 87 560 196 620 196\" fill=\"none\" stroke=\"#FF4B3A\" stroke-width=\"2.5\" stroke-dasharray=\"7 6\"/><path class=\"ds-strip-signal\" d=\"M44 196 C110 196 130 80 182 80 L470 80 C520 80 560 196 620 196\" fill=\"none\" stroke=\"#19E3E8\" stroke-width=\"3\" pathLength=\"1\"/></svg><dl class=\"ds-strip-readouts\"><dt>Battery</dt><dd class=\"ds-red\">11.9 V</dd><dt>voltageScale</dt><dd>1.06×</dd></dl></div><p class=\"ds-strip-note\">Illustration, not measured robot data.</p></figure>",
+      "css": ".ds-strip { margin: 0; padding: 24px; background: #111317; border: 1px solid #23272D; border-radius: 16px; color: #F4F6F7; } .ds-strip-title { font-family: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 18px; } .ds-strip-body { display: grid; grid-template-columns: 1fr 10rem; gap: 24px; margin-top: 16px; align-items: center; } .ds-strip-chart { width: 100%; } .ds-strip-signal { stroke-dasharray: 1; animation: ds-draw 1.4s cubic-bezier(0.16, 1, 0.3, 1) both; } @keyframes ds-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } } @media (prefers-reduced-motion: reduce) { .ds-strip-signal { animation: none; stroke-dashoffset: 0; } } .ds-strip-readouts { margin: 0; font-family: Barlow, ui-sans-serif, system-ui, sans-serif; font-size: 14px; } .ds-strip-readouts dt { color: #9AA3AB; } .ds-strip-readouts dd { margin: 0 0 12px; font-family: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 24px; font-variant-numeric: tabular-nums; } .ds-red { color: #FF4B3A; } .ds-strip-note { margin: 12px 0 0; font-family: Barlow, ui-sans-serif, system-ui, sans-serif; font-size: 12px; color: #9AA3AB; }"
+    },
+    {
+      "name": "Warning Callout",
+      "kind": "card",
+      "refersTo": "panel-card",
+      "description": "Fumadocs callout with the 1px side border and icon tinted Battery Red; info/success use cyan the same way.",
+      "html": "<div class=\"ds-callout\"><svg class=\"ds-callout-icon\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 2 1 21h22L12 2Z\" fill=\"#FF4B3A\"/><path d=\"M12 9v5M12 17h.01\" stroke=\"#111317\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg><div><p class=\"ds-callout-title\">Important</p><p class=\"ds-callout-body\">Use the same localizer and drivetrain you tuned with Pedro.</p></div></div>",
+      "css": ".ds-callout { display: flex; gap: 8px; padding: 12px; background: #111317; border: 1px solid #23272D; border-inline-start: 1px solid color-mix(in oklab, #FF4B3A 45%, #23272D); border-radius: 12px; color: #F4F6F7; font-family: Barlow, ui-sans-serif, system-ui, sans-serif; font-size: 14px; } .ds-callout-icon { flex-shrink: 0; margin-top: 2px; } .ds-callout-title { margin: 0; font-weight: 500; } .ds-callout-body { margin: 4px 0 0; color: #9AA3AB; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Two-Lead Signal",
+    "overview": "ElectroDromos's docs keep the familiar Pedro Pathing docs structure: the fumadocs sidebar, TOC, search, and a centered docs home. What makes the site ElectroDromos's is the material: a near-black ground, white type, and two signal colors that behave like a battery's two wires. Cyan is the lead that carries meaning (links, focus, primary actions, \"DROMOS\", the compensated line). Red is the return (the battery, warnings, the right arm of the V, the uncompensated line). The whole identity is those two leads, drawn thin and exact.\n\nThe site is dense and quiet. Surfaces are flat panels separated by 1px hairlines, and the only motion carries information: the signal line draws in once, the battery toggle rescales the red line, and the typed heading settles once on its thesis. A single product-specific effect, the Signal Strip, is the only illustration, and it is labeled as illustrative. The system refuses Pedro's pink glow and the particle field that most Pedro docs forks inherit. It sits beside Pedro's site at the same craft level without copying its look.\n\nEvery page is signed by the brand thread: a 2px line pinned to the top of the viewport, about 78% cyan, then a short gap, then red. Structure never changes to create identity. New features become new rows and new sidebar entries with a Lucide icon, never new layouts.",
+    "keyCharacteristics": [
+      "Pedro-docs layout, ElectroDromos material: black ground, white text, cyan and red signal.",
+      "Cyan is the only primary accent. Red is a second channel with its own meanings, never a substitute for cyan.",
+      "Flat panels, hairline borders, pill-shaped actions, 16px panel corners.",
+      "Chakra Petch (angular, technical) for headings, the lockup and readouts. Barlow for everything read.",
+      "Motion only where it explains something, always ending in a still state, with reduced motion honored."
+    ],
+    "rules": [
+      {
+        "name": "The Two Leads Rule",
+        "body": "Cyan carries meaning and action. Red carries the battery and warnings. Red never stands in for cyan on a link, button or focus state, and cyan never marks a warning.",
+        "section": "colors"
+      },
+      {
+        "name": "The Thread Signature Rule",
+        "body": "The 2px brand thread (cyan to 78%, a 0.6% gap, then red) runs across the top of every page and the OG images. Do not echo it as decorative stripes anywhere else.",
+        "section": "colors"
+      },
+      {
+        "name": "The Theme Pair Rule",
+        "body": "Every signal use goes through the theme-aware tokens (fd-primary, dromos-signal, dromos-battery), so the light theme gets Deep Signal and Deep Battery automatically. Hard-coded hex values are for brand assets only.",
+        "section": "colors"
+      },
+      {
+        "name": "The Measured Figures Rule",
+        "body": "Numbers that get compared, such as table cells, volts and scales, use tabular figures.",
+        "section": "typography"
+      },
+      {
+        "name": "The Angular Heads Rule",
+        "body": "Chakra Petch is for headings, the lockup, the wordmark and readouts. Running text is always Barlow.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-At-Rest Rule",
+        "body": "Surfaces are flat at rest. Shadow and lift appear only on hover of a whole navigable card.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** route every accent through the theme tokens (fd-primary, dromos-signal, dromos-battery) so the light theme gets Deep Signal and Deep Battery.",
+      "**Do** keep the V's colors fixed: cyan arm left, red arm right, slanted 10 degrees. Use `logo-wordmark-light.svg` on light grounds.",
+      "**Do** add a new feature as one new feature row and one sidebar page with a Lucide `icon:` in its frontmatter.",
+      "**Do** keep panels at 16px corners with 1px hairlines and actions as full pills at 44px height.",
+      "**Do** use tabular figures for volts, scales and table data.",
+      "**Do** end every animation in a still, complete state and honor `prefers-reduced-motion`.",
+      "**Do** label illustrative charts as illustrative. Never show numbers that were not measured."
+    ],
+    "donts": [
+      "**Don't** use red for links, primary buttons or focus. Don't use cyan for warnings.",
+      "**Don't** add Pedro's pink glow, a particle field, or any ambient background effect.",
+      "**Don't** change the Pedro-docs layout to create identity. Differentiate with color, type, the mark and the Signal Strip.",
+      "**Don't** add resting shadows or glows to panels. Depth is ground to panel plus a hairline.",
+      "**Don't** set running text in Chakra Petch, or headings in Barlow.",
+      "**Don't** use Pedro Pathing's logo or colors as ElectroDromos's, or the team's \"EL 30686\" mark as the product mark."
+    ]
+  }
+}

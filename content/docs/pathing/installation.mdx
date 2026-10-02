@@ -1,0 +1,148 @@
+---
+title: Installation
+description: Installing Pedro Pathing with ElectroDromos on top
+icon: Download
+---
+
+import DromosImplementation from "@/app/DromosImplementation";
+import {Step, Steps} from "fumadocs-ui/components/steps";
+
+ElectroDromos is an add-on for [Pedro Pathing](https://pedropathing.com), not a replacement. Your project keeps stock Pedro, including Pedro's own `new Follower(...)`. ElectroDromos wraps the localizer and drivetrain you hand to that follower and adds voltage compensation, a loop timer, and a write-caching motor for mechanisms.
+
+| Requirement | Version |
+|---|---|
+| Pedro Pathing | **3.0.1** or newer |
+| Pedro tuning (AutoTune) | 1.0.1 |
+| FTC SDK | 11.2 or newer |
+| IDE | Android Studio (not OnBot Java or Blocks) |
+
+<Callout title="Pre-alpha" type="warning">
+    ElectroDromos 0.0.1-PreAlpha builds and passes its unit tests, but it hasn't run on a physical robot yet. Try it on a practice robot before you rely on it at an event, and report what you find on [GitHub](https://github.com/MunchemOG/ElectroDocs/issues).
+</Callout>
+
+<Steps>
+<Step>
+### Install Pedro Pathing
+
+If your project doesn't have Pedro yet, start from the Pedro Quickstart:
+
+- In Android Studio, go to `Main Menu -> File -> New -> Project from Version Control` and enter `https://github.com/Pedro-Pathing/Quickstart.git`.
+
+**OR**
+
+- Run `git clone https://github.com/Pedro-Pathing/Quickstart.git`. Make sure you have [git](https://git-scm.com/) installed first.
+
+To add Pedro to an existing project instead, follow [Pedro's installation guide](https://pedropathing.com/docs/pathing/installation) and copy the [`pedro` package from the Quickstart](https://github.com/Pedro-Pathing/Quickstart/tree/master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/pedro).
+
+<Callout title="Already on Pedro 2 or an early Pedro 3 alpha?" type="warning">
+    Update to Pedro 3.0.1 or newer first. ElectroDromos pulls in `com.pedropathing:core` 3.0.1, and mixing it with an older `revhub` or with Pedro 2 code (like `com.pedropathing.math.MathFunctions`) fails to build or crashes at runtime.
+</Callout>
+</Step>
+
+<Step>
+### Add ElectroDromos
+
+Open `build.dependencies.gradle`. Add ElectroDromos's repository next to Pedro's, and its dependency next to Pedro's:
+
+<DromosImplementation/>
+
+Then do a Gradle sync: press "Sync Now" in the blue banner, or click the Gradle elephant at the top right of Android Studio.
+</Step>
+
+<Step>
+### Build your follower with ElectroDromos
+
+In `Constants.java`, add a `DromosConfig` next to Pedro's configs. In `create`, pass the localizer and drivetrain through a `Dromos` before handing them to Pedro's `Follower`. Everything else stays as Pedro's docs describe.
+
+```java title="Constants.java"
+package org.firstinspires.ftc.teamcode.pedro;
+
+import com.pedropathing.algorithm.Foresight;
+import com.pedropathing.algorithm.ForesightConfig;
+import com.pedropathing.follower.Follower;
+import com.pedropathing.revhub.drivetrains.Mecanum;
+import com.pedropathing.revhub.drivetrains.MecanumConfig;
+import com.pedropathing.revhub.localizers.PinpointConfig;
+import com.pedropathing.revhub.localizers.PinpointLocalizer;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import me.munchem.electrodromos.Dromos;
+import me.munchem.electrodromos.DromosConfig;
+
+public class Constants {
+    // Pedro Pathing: filled in by Pedro's tuners
+    public static MecanumConfig drivetrainConfig = new MecanumConfig(c -> { /* ... */ });
+    public static PinpointConfig localizerConfig = new PinpointConfig(c -> { /* ... */ });
+    public static ForesightConfig foresightConfig = new ForesightConfig(c -> { /* ... */ });
+
+    // ElectroDromos: nominalVoltage comes from the Voltage Compensation Tuner
+    public static DromosConfig dromosConfig = new DromosConfig(c -> {
+        c.voltageCompensation.set(true);
+        c.nominalVoltage.set(12.0);
+    });
+
+    public static Follower create(HardwareMap h) {
+        Dromos dromos = new Dromos(h, dromosConfig);
+        return new Follower(
+            dromos.localizer(new PinpointLocalizer(h, localizerConfig)),
+            dromos.drivetrain(new Mecanum(h, drivetrainConfig)),
+            new Foresight(foresightConfig)
+        );
+    }
+}
+```
+
+<Callout title="Important" type="warning">
+    Use the same localizer and drivetrain you tuned with Pedro. ElectroDromos only wraps them, so Pedro's tuned values stay valid.
+</Callout>
+
+<Callout title="Bulk caching" type="info">
+    Bulk caching isn't part of ElectroDromos. It will live in **ElectroTelos**, the Ivy supplement your auto and teleop OpModes extend from. Until that ships, put every hub in `AUTO` bulk caching mode at the start of your OpMode:
+
+```java
+for (LynxModule hub : hardwareMap.getAll(LynxModule.class)) {
+    hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
+}
+```
+</Callout>
+</Step>
+
+<Step>
+### Register the Voltage Compensation Tuner
+
+In your `Tuning` class, add ElectroDromos's tuner next to Pedro's Foresight tuner. It uses the same localizer and drivetrain:
+
+```java title="Tuning.java"
+package org.firstinspires.ftc.teamcode.pedro;
+
+import com.pedropathing.revhub.drivetrains.Mecanum;
+import com.pedropathing.revhub.localizers.PinpointLocalizer;
+import com.pedropathing.tuning.autotune.Procedure;
+import com.pedropathing.tuning.autotune.Tuner;
+import me.munchem.electrodromos.tuning.VoltageCompensationTuner;
+import org.firstinspires.ftc.teamcode.pedro.procedures.ForesightTuner; // from the Pedro Quickstart
+
+public class Tuning {
+    @Tuner
+    public static Procedure foresightTuner() {
+        return new ForesightTuner(
+            hardwareMap -> new PinpointLocalizer(hardwareMap, Constants.localizerConfig),
+            hardwareMap -> new Mecanum(hardwareMap, Constants.drivetrainConfig));
+    }
+
+    @Tuner
+    public static Procedure voltageCompensationTuner() {
+        return new VoltageCompensationTuner(
+            hardwareMap -> new PinpointLocalizer(hardwareMap, Constants.localizerConfig),
+            hardwareMap -> new Mecanum(hardwareMap, Constants.drivetrainConfig),
+            Constants.foresightConfig);
+    }
+}
+```
+</Step>
+</Steps>
+
+## Next Steps
+
+1. [Tune Pedro Pathing](/docs/pathing/tuning) as usual: drivetrain, localizer, then Foresight.
+2. Run the [Voltage Compensation Tuner](/docs/pathing/reference/voltage-tuner) and copy the `nominalVoltage` it gives you into `dromosConfig`.
+3. Read [how ElectroDromos works](/docs/pathing/reference/dromos-setup), especially the rule to call `follower.update()` exactly once in every loop.

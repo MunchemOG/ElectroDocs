@@ -1,0 +1,72 @@
+---
+title: Loop Timer
+description: Measuring loop speed without slowing the loop
+icon: Timer
+---
+
+Faster loops mean tighter path following. The loop timer shows how fast your OpMode really runs, at a cost of one `System.nanoTime()` and a few additions per loop (about 50 ns). It never allocates and never sends telemetry; you decide what to print and when.
+
+## Use
+
+A follower built with `dromos.localizer(...)` already ticks a timer inside every `follower.update()`:
+
+```java title="MyTeleOp.java"
+import com.pedropathing.follower.Follower;
+import me.munchem.electrodromos.LoopTimer;
+import me.munchem.electrodromos.Dromos;
+
+public class MyTeleOp extends OpMode {
+    private Follower follower;
+    private LoopTimer loop;
+
+    @Override
+    public void init() {
+        follower = Constants.create(hardwareMap);   // Pedro follower, built with ElectroDromos
+        loop = Dromos.loopTimer(follower);
+    }
+
+    @Override
+    public void start() {
+        loop.reset();   // don't count the wait between init and start
+    }
+
+    @Override
+    public void loop() {
+        follower.manual(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+        follower.update();   // ticks the timer
+
+        telemetry.addData("loop Hz", loop.hz());
+        telemetry.addData("worst loop (ms)", loop.maxMs());
+        telemetry.update();
+    }
+}
+```
+
+`Dromos.loopTimer(follower)` throws if the follower's localizer didn't come from `dromos.localizer(...)`.
+
+## Readings
+
+Stats are published once per 500 ms window, so they stay still long enough to read. They're 0 until the first window completes.
+
+| Method | Meaning |
+|---|---|
+| `hz()` | Loops per second over the last window |
+| `averageMs()` | Average loop time over the last window |
+| `maxMs()` | Slowest loop in the last window: the spikes that hurt path following |
+| `lastMs()` | The most recent loop |
+| `reset()` | Forget everything, e.g. in `start()` |
+
+<Callout title="Telemetry is the expensive part" type="info">
+    Measuring costs nothing noticeable. Sending telemetry every loop can cost milliseconds. If the loop timer shows telemetry slowing you down, send it less often. You'll see the loop speed change in the timer itself.
+</Callout>
+
+## Timing a loop without a follower
+
+```java
+LoopTimer loop = new LoopTimer();
+
+// once per loop:
+loop.tick();
+```
+
+Only tick once per loop. If you also call `follower.update()`, use `Dromos.loopTimer(follower)` instead of a second timer.

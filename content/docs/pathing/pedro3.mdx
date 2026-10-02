@@ -1,0 +1,28 @@
+---
+title: Upgrading to Pedro 3
+description: ElectroDromos needs Pedro Pathing 3.0.1 or newer
+---
+
+ElectroDromos only supports **Pedro Pathing 3.0.1** and newer. It depends on `com.pedropathing:core` 3.0.1, so an older Pedro in the same project ends up with mismatched versions: it fails to build, or crashes on the robot.
+
+## Coming from Pedro 2
+
+Pedro 3 is a full rewrite. For what changed and how to move over, see [Pedro's own notes on Pedro 3](https://pedropathing.com/docs/pathing/pedro3). The highlights you'll meet in these docs:
+
+- **Foresight** replaces Predictive Braking as Pedro's following algorithm. See [Deceleration](/docs/pathing/reference/deceleration).
+- **Pose Factories** create poses in degrees or radians and can mirror them. See [Pose Factory](/docs/pathing/reference/posefactory).
+- **Paths** have a new API. See [Path Creation](/docs/pathing/reference/api).
+- **AutoTune** is a robot-hosted tuning page. ElectroDromos's [Voltage Compensation Tuner](/docs/pathing/reference/voltage-tuner) runs in it too.
+- **Logging** is built into the follower. See [Logging](/docs/pathing/reference/logging).
+
+## Common upgrade errors
+
+| Error | Cause | Fix |
+|---|---|---|
+| `Unresolved reference` / `cannot find symbol: MathFunctions` | `com.pedropathing.math.MathFunctions` is Pedro 2. It doesn't exist in Pedro 3. | Use `com.pedropathing.utils.Utils` (for example `Utils.clamp`). |
+| `NoSuchMethodError` or `NoClassDefFoundError` in `com.pedropathing` on the robot | An old `com.pedropathing:revhub` (for example a `3.0.0` alpha) mixed with ElectroDromos's `core` 3.0.1 | Update `revhub` to 3.0.1 or newer. |
+| `new Follower(...)` doesn't match | Pedro 2 constructors | Follow [Installation](/docs/pathing/installation): `new Follower(localizer, drivetrain, new Foresight(...))`. |
+
+## Staying up to date
+
+ElectroDromos's 3.0.1 requirement is a floor. If your project uses a newer Pedro, Gradle picks the newer one and ElectroDromos runs on it.

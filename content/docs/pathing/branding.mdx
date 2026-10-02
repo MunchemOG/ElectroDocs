@@ -1,0 +1,63 @@
+---
+title: Branding
+description: ElectroDromos's mark, colors and type
+---
+
+## The mark
+
+The **D** is a racetrack seen from above: a cyan straight on the left and a red turn on the right, split by a thin gap like a battery's two leads. *Dromos* is Greek for a racecourse, which is where the name comes from. The D slants with the italic lettering.
+
+<div className="not-prose my-6 grid gap-4 sm:grid-cols-[auto_1fr]">
+  <div className="flex items-center justify-center rounded-2xl border border-fd-border bg-[#08090B] p-6">
+    <img className="size-24" src={`${process.env.BASE_PATH}/logo-mark.svg`} alt="ElectroDromos mark" />
+  </div>
+  <div className="flex items-center rounded-2xl border border-fd-border bg-[#08090B] p-6">
+    <img className="w-full max-w-lg" src={`${process.env.BASE_PATH}/logo-wordmark.svg`} alt="ElectroDromos wordmark for dark backgrounds" />
+  </div>
+  <div className="hidden sm:block" />
+  <div className="flex items-center rounded-2xl border border-fd-border bg-[#F4F6F7] p-6">
+    <img className="w-full max-w-lg" src={`${process.env.BASE_PATH}/logo-wordmark-light.svg`} alt="ElectroDromos wordmark for light backgrounds" />
+  </div>
+</div>
+
+<div className="not-prose flex flex-wrap gap-3 mb-8">
+  <a href={`${process.env.BASE_PATH}/logo-wordmark.svg`} download className="inline-flex items-center justify-center font-semibold bg-fd-primary text-fd-primary-foreground hover:brightness-110 transition h-11 px-5 rounded-full">Wordmark, dark (SVG)</a>
+  <a href={`${process.env.BASE_PATH}/logo-wordmark-light.svg`} download className="inline-flex items-center justify-center font-medium border border-fd-border hover:border-fd-primary hover:text-fd-primary transition-colors h-11 px-5 rounded-full">Wordmark, light (SVG)</a>
+  <a href={`${process.env.BASE_PATH}/logo-mark.svg`} download className="inline-flex items-center justify-center font-medium border border-fd-border hover:border-fd-primary hover:text-fd-primary transition-colors h-11 px-5 rounded-full">Mark on black (SVG)</a>
+  <a href={`${process.env.BASE_PATH}/logo-mark-transparent.svg`} download className="inline-flex items-center justify-center font-medium border border-fd-border hover:border-fd-primary hover:text-fd-primary transition-colors h-11 px-5 rounded-full">Mark, transparent (SVG)</a>
+  <a href={`${process.env.BASE_PATH}/og-banner.png`} download className="inline-flex items-center justify-center font-medium border border-fd-border hover:border-fd-primary hover:text-fd-primary transition-colors h-11 px-5 rounded-full">Share banner (PNG)</a>
+</div>
+
+- Keep the D's colors: cyan straight on the left, red turn on the right. Don't recolor or flip it.
+- Leave clear space around the mark at least as wide as the D's straight.
+- On light backgrounds, use the light wordmark. Its "DROMOS" is a darker cyan so it stays readable.
+
+## Colors
+
+These are ElectroLights 30686's team colors. Each one has a job:
+
+| Color | Hex | Role |
+|---|---|---|
+| <span className="whitespace-nowrap"><span className="inline-block size-4 rounded-sm border border-fd-border align-middle" style={{background:'#08090B'}} /> Black</span> | `#08090B` | The main surface: pages, panels, the mark's tile |
+| <span className="whitespace-nowrap"><span className="inline-block size-4 rounded-sm border border-fd-border align-middle" style={{background:'#F4F6F7'}} /> White</span> | `#F4F6F7` | Text and "ELECTRO" in the wordmark |
+| <span className="whitespace-nowrap"><span className="inline-block size-4 rounded-sm border border-fd-border align-middle" style={{background:'#19E3E8'}} /> Cyan</span> | `#19E3E8` | The one primary accent: links, focus, primary buttons, "DROMOS", ElectroDromos's compensated speed |
+| <span className="whitespace-nowrap"><span className="inline-block size-4 rounded-sm border border-fd-border align-middle" style={{background:'#FF4B3A'}} /> Red</span> | `#FF4B3A` | The second channel: the battery, warnings, the red turn of the D. Never a replacement for cyan. |
+
+In the light theme, cyan becomes `#007A80` and red `#C42E1F` so text keeps enough contrast on white.
+
+The site signs every page with a thin **brand thread** along the top: a long cyan lead and a short red one.
+
+## Type
+
+- **[Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch)** (Bold Italic in the wordmark, Semibold and Bold for headings).
+- **[Barlow](https://fonts.google.com/specimen/Barlow)** for reading text.
+
+Both are free under the SIL Open Font License.
+
+## Credit
+
+ElectroDromos is made by **ElectroLights 30686**. The team's own "EL 30686" mark belongs to the team and isn't part of ElectroDromos's branding.
+
+## Pedro Pathing
+
+ElectroDromos is built on Pedro Pathing but isn't affiliated with it. Pedro Pathing's name, logo and colors belong to the Pedro Pathing team. If you mention that your robot uses Pedro Pathing, use their assets from [Pedro's branding page](https://pedropathing.com/docs/pathing/branding).

@@ -1,0 +1,72 @@
+---
+title: Voltage Compensation Tuner
+description: Finding nominalVoltage without trial and error
+icon: Gauge
+---
+
+The Voltage Compensation Tuner works out `nominalVoltage`: the battery voltage your Pedro tune was made at. You don't need to have written that voltage down, and you don't need the same battery.
+
+## How it works
+
+Pedro's Foresight tuner drove forward at full power and saved the top speed as `maxAchievableForwardVelocity`. A drivetrain's top speed is close to proportional to battery voltage. So ElectroDromos drives the same full-power run on today's battery and measures its top speed and the battery voltage under that load:
+
+```
+nominalVoltage ≈ today's voltage × maxAchievableForwardVelocity / today's top speed
+```
+
+For example: tuned at 70 in/s, today 60 in/s at 11.4 V → nominalVoltage ≈ 11.4 × 70 / 60 = 13.3 V.
+
+It does several runs and averages them.
+
+## Before you start
+
+- Finish Pedro's tuning first: [drivetrain, localizer, and Foresight](/docs/pathing/tuning). The tuner reads `maxAchievableForwardVelocity` from your `ForesightConfig`.
+- If you change the drivetrain (gearing, wheels, motors), rerun Foresight **and** this tuner.
+
+## Add the tuner
+
+In your `Tuning` class, next to Pedro's tuners, with the same localizer and drivetrain:
+
+```java title="Tuning.java"
+import com.pedropathing.revhub.drivetrains.Mecanum;
+import com.pedropathing.revhub.localizers.PinpointLocalizer;
+import com.pedropathing.tuning.autotune.Procedure;
+import com.pedropathing.tuning.autotune.Tuner;
+import me.munchem.electrodromos.tuning.VoltageCompensationTuner;
+
+public class Tuning {
+    @Tuner
+    public static Procedure voltageCompensationTuner() {
+        return new VoltageCompensationTuner(
+            hardwareMap -> new PinpointLocalizer(hardwareMap, Constants.localizerConfig),
+            hardwareMap -> new Mecanum(hardwareMap, Constants.drivetrainConfig),
+            Constants.foresightConfig);
+    }
+}
+```
+
+Build and send the code to your robot.
+
+## Run it
+
+1. While connected to the Robot Controller, open Pedro's AutoTune page at http://192.168.43.1:10158 and select **Voltage Compensation Tuner**.
+2. **Runs:** enter the distance (use the same distance you used for Foresight's forward velocity test; the default is 48 in) and the number of runs (default 3).
+3. **Full Power Run:** put the robot at the start of a clear lane, facing down it, and press start. It drives forward at full power and will drift past the distance. Put it back at the start before each run.
+4. **Results:** each run shows its speed, voltage, and the nominalVoltage it points to. Copy the generated code into `Constants.java`:
+
+```java title="Constants.java"
+public static DromosConfig dromosConfig = new DromosConfig(c -> {
+    c.voltageCompensation.set(true);
+    c.nominalVoltage.set(13.30);
+});
+```
+
+<Callout title="Spread" type="info">
+    The results also show the **spread**: the gap between the highest and lowest run. Under a few tenths of a volt is good. Above 0.5 V the tuner warns you. Common causes are wheel slip, a lane too short to reach top speed, or a loose battery connection. Fix it and rerun.
+</Callout>
+
+## Accuracy
+
+- The proportional model ignores friction, so the estimate can be off by roughly 0.1 V when today's battery is far from the tuning battery. Compensation is forgiving at that level.
+- The estimate is only as good as the Foresight tune it compares against. If `maxAchievableForwardVelocity` was measured on a bad run, retune Foresight first.
+- The runs use manual (uncompensated) power, so it doesn't matter whether compensation is on while you tune.

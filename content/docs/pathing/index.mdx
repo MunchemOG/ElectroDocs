@@ -1,0 +1,35 @@
+---
+title: Introduction
+description: What is ElectroDromos?
+---
+
+ElectroDromos is an **add-on for [Pedro Pathing](https://pedropathing.com)**. Pedro does the path following: its Foresight algorithm, paths, poses, AutoTune and the `Follower` itself. ElectroDromos sits on top and makes that follower run more consistently, without touching Pedro's code or your tune.
+
+You keep building Pedro's follower with `new Follower(...)`. ElectroDromos wraps the localizer and drivetrain you pass in:
+
+```java title="Constants.java"
+public static Follower create(HardwareMap h) {
+    Dromos dromos = new Dromos(h, dromosConfig);                          // ElectroDromos
+    return new Follower(                                              // Pedro Pathing
+        dromos.localizer(new PinpointLocalizer(h, localizerConfig)),
+        dromos.drivetrain(new Mecanum(h, drivetrainConfig)),
+        new Foresight(foresightConfig)
+    );
+}
+```
+
+## What you get
+
+- **[Voltage compensation](/docs/pathing/reference/voltage-compensation):** paths drive the same on a fresh or a tired battery. A **[tuner](/docs/pathing/reference/voltage-tuner)** finds the setting for you.
+- **[Loop timer](/docs/pathing/reference/loop-timer):** loop Hz and worst loop time, at almost no cost.
+- **[DromosMotor](/docs/pathing/reference/dromos-motor):** mechanism motors that skip hub writes that change nothing.
+
+## How these docs are organized
+
+- **ElectroDromos pages** ([Installation](/docs/pathing/installation) and the ElectroDromos group under Reference) cover everything ElectroDromos adds.
+- **Guides and tuning** walk through using Pedro Pathing with ElectroDromos installed. Pedro's tuning procedure doesn't change; ElectroDromos adds one tuner at the end.
+- **Pedro Pathing reference** pages explain Pedro's own API (poses, paths, controllers). Pedro's official docs at [pedropathing.com](https://pedropathing.com) are the source of truth for Pedro.
+
+Pedro Pathing is made by the Pedro Pathing team. ElectroDromos is a separate project and isn't affiliated with them.
+
+**Next Steps:** Check the [Prerequisites](/docs/pathing/prerequisites) before getting started.

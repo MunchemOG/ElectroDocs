@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "---ElectroDromos Reference---",
+    "dromos-setup",
+    "voltage-compensation",
+    "voltage-tuner",
+    "loop-timer",
+    "dromos-motor",
+    "---Pedro Pathing Reference---",
+    "posefactory",
+    "api",
+    "interpolation",
+    "deceleration",
+    "coordinates",
+    "endconstraints",
+    "pathconstraints",
+    "foresightoptions",
+    "beziercurves",
+    "velocity",
+    "logging",
+    "controllers"
+  ]
+}

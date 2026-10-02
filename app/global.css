@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/black.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/*
+ * ElectroDromos's palette: black is the body, white is the text, cyan is the one primary accent
+ * (links, focus, primary actions) and red is the second channel (the battery, warnings, the red
+ * lead of the mark). Red never stands in for cyan.
+ */
+@theme {
+    --color-dromos-black: #08090b;
+    --color-dromos-panel: #111317;
+    --color-dromos-white: #f4f6f7;
+    --color-dromos-cyan: #19e3e8;
+    --color-dromos-red: #ff4b3a;
+
+    --font-display: var(--font-chakra), ui-sans-serif, system-ui, sans-serif;
+    --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+
+    /* Light theme: cyan and red darkened to hold 4.5:1 on white. */
+    --color-fd-background: #f6f7f8;
+    --color-fd-foreground: #0b0d10;
+    --color-fd-muted: #eceef0;
+    --color-fd-muted-foreground: #4f5861;
+    --color-fd-card: #ffffff;
+    --color-fd-card-foreground: #0b0d10;
+    --color-fd-popover: #ffffff;
+    --color-fd-popover-foreground: #0b0d10;
+    --color-fd-border: #d9dde1;
+    --color-fd-primary: #007a80;
+    --color-fd-primary-foreground: #ffffff;
+    --color-fd-secondary: #eceef0;
+    --color-fd-secondary-foreground: #0b0d10;
+    --color-fd-accent: #e1f6f7;
+    --color-fd-accent-foreground: #004f53;
+    --color-fd-ring: #007a80;
+    --color-dromos-signal: #007a80;
+    --color-dromos-battery: #c42e1f;
+}
+
+.dark {
+    --color-fd-background: #08090b;
+    --color-fd-foreground: #f4f6f7;
+    --color-fd-muted: #15181c;
+    --color-fd-muted-foreground: #9aa3ab;
+    --color-fd-card: #111317;
+    --color-fd-card-foreground: #f4f6f7;
+    --color-fd-popover: #111317;
+    --color-fd-popover-foreground: #f4f6f7;
+    --color-fd-border: #23272d;
+    --color-fd-primary: #19e3e8;
+    --color-fd-primary-foreground: #041416;
+    --color-fd-secondary: #15181c;
+    --color-fd-secondary-foreground: #f4f6f7;
+    --color-fd-accent: #0f2a2c;
+    --color-fd-accent-foreground: #19e3e8;
+    --color-fd-ring: #19e3e8;
+    --color-dromos-signal: #19e3e8;
+    --color-dromos-battery: #ff4b3a;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-feature-settings: "tnum" 0;
+}
+
+/* Brand thread: a cyan lead and a red lead across the top of every page. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 2px;
+    z-index: 60;
+    pointer-events: none;
+    background: linear-gradient(90deg,
+        var(--color-dromos-signal) 0 78%,
+        transparent 78% 78.6%,
+        var(--color-dromos-battery) 78.6% 100%);
+}
+
+h1, h2, h3, h4,
+#nd-page h1, #nd-page h2, #nd-page h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+}
+
+::selection {
+    background: color-mix(in oklab, var(--color-dromos-signal) 32%, transparent);
+    color: var(--color-fd-foreground);
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-fd-ring);
+    outline-offset: 2px;
+}
+
+html {
+    caret-color: var(--color-dromos-signal);
+    scrollbar-color: var(--color-fd-border) transparent;
+    accent-color: var(--color-dromos-signal);
+}
+
+#nd-page a:not([class]) {
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in oklab, var(--color-fd-primary) 55%, transparent);
+}
+
+/* Measurements in tables line up. */
+#nd-page td, #nd-page th {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Wordmark pair: follows the site's theme toggle (the .dark class), not the OS setting. */
+.dromos-wordmark-light { display: none; }
+html:not(.dark) .dromos-wordmark-dark { display: none; }
+html:not(.dark) .dromos-wordmark-light { display: block; }
+
+/* Callouts: a hairline instead of fumadocs' 2px colored side stripe, tinted from the palette.
+   Warnings and errors take the red channel; info and success take cyan. */
+#nd-page .border-s-2 {
+    border-inline-start-width: 1px;
+}
+#nd-page .border-s-orange-500\/50,
+#nd-page .border-s-red-500\/50 {
+    border-color: color-mix(in oklab, var(--color-dromos-battery) 45%, var(--color-fd-border));
+}
+#nd-page .border-s-blue-500\/50,
+#nd-page .border-s-green-500\/50 {
+    border-color: color-mix(in oklab, var(--color-dromos-signal) 40%, var(--color-fd-border));
+}
+#nd-page .fill-orange-500,
+#nd-page .fill-red-500 {
+    fill: var(--color-dromos-battery);
+}
+#nd-page .fill-blue-500,
+#nd-page .fill-green-500 {
+    fill: var(--color-dromos-signal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dromos-trace path[data-draw] {
+        animation: none !important;
+        stroke-dashoffset: 0 !important;
+    }
+}

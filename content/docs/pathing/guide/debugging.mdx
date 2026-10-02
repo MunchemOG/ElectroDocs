@@ -1,0 +1,72 @@
+---
+title: Debugging
+description: How to print Pedro's and ElectroDromos's states
+---
+
+Almost every important component of Pedro Pathing's follower has a debug string that can be logged.
+
+The Drivetrain, Algorithm, and Localizer all have their own `debug()` methods that return a `Map<String, Object>` log of their present state.
+
+If you are requesting Pedro Pathing troubleshooting help from others, sending a video of these messages can provide an effective way for others to diagnose your issue.
+
+## Follower Log
+
+The Follower has a `debug()` method that returns a `FollowerLog` of its present state.
+
+This log contains the debug maps from the Drivetrain, Algorithm, and Localizer, as well as some additional data.
+
+You can access each individual debug `Map<String, Object>` with the following methods:
+
+```java
+Map<String, Object> drivetrainLog = follower.debug().drivetrain();
+Map<String, Object> algorithmLog = follower.debug().algorithm();
+Map<String, Object> localizerLog = follower.debug().localizer();
+Map<String, Object> followStateLog = follower.debug().followState();
+```
+
+## Debug Strings
+
+If someone asks you to send a video of your "drivetrain string", you would do that like this:
+
+```java
+String drivetrainString = follower.debug().drivetrain().toString();
+telemetry.addLine(drivetrainString);
+telemetry.update();
+```
+Similarly, the "algorithm string" can be accessed with `follower.debug().algorithm().toString()` and the "localizer string" can be accessed with `follower.debug().localizer().toString();`.
+
+### Follower String
+The `Follower` also has its own debug string for the `FollowerLog` that contains all the debug maps and additional data.
+
+You may access the follower string with the `follower.debug().toString()` method.
+
+<Callout title="Tip" type="info">
+   You can use a `Consumer<FollowerLog>` to log the follower's debug information easily. See [Logging](/docs/pathing/reference/logging) for more details.
+</Callout>
+
+## ElectroDromos
+
+ElectroDromos adds its own entries to Pedro's debug output, plus a loop timer:
+
+```java
+// Voltage compensation: in the drivetrain log when it's on
+Map<String, Object> drivetrainLog = follower.debug().drivetrain();
+telemetry.addData("Battery (filtered)", drivetrainLog.get("voltage"));
+telemetry.addData("Power scale", drivetrainLog.get("voltageScale"));
+
+// Loop timer: loop = Dromos.loopTimer(follower) in init
+telemetry.addData("Loop Hz", loop.hz());
+telemetry.addData("Worst loop (ms)", loop.maxMs());
+telemetry.update();
+```
+
+- A `voltageScale` far from 1.0 on a charged battery usually means `nominalVoltage` is wrong. Rerun the [Voltage Compensation Tuner](/docs/pathing/reference/voltage-tuner).
+- A low `Loop Hz`, or a `Worst loop` spike, makes every path follow worse. Look for extra hardware reads, sleeps, or heavy telemetry.
+
+When asking for help, say that ElectroDromos is installed. If you suspect it, rebuild `create()` with a plain `new Follower(...)` and check whether the problem goes away.
+
+## Next Steps
+
+Feel free to continue on to any of the Reference pages. Start with the ElectroDromos group ([Dromos & DromosConfig](/docs/pathing/reference/dromos-setup)), then Pedro's ([Pose Factory](/docs/pathing/reference/posefactory) first).
+
+

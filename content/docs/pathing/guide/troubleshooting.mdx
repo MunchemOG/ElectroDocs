@@ -1,0 +1,16 @@
+---
+title: Troubleshooting
+description: Common issues you may run into
+---
+
+**Q: My AutoTune gave me a `ForceStopException` when I pressed stop on my OpMode. What does this mean?**
+**A:** A likely cause of this exception is that the OpMode required you to move your robot. If you stopped the OpMode before moving your robot,
+this produces a divide-by-zero, and therefore induces an output of ∞. To avoid this error, you should move your robot before stopping the OpMode. The exception is handled gracefully, meaning that you don't need to restart the robot; you can simply restart the procedure.
+
+**Q: The Voltage Compensation Tuner says "The run ended before the robot reached full speed". What happened?**
+**A:** The robot covered the distance in fewer than 10 loops, or you stopped the run early. Use a longer distance (the same one as Foresight's forward velocity test) and let the run finish.
+
+**Q: The Voltage Compensation Tuner fails right away with a `ConfigVar` or "required" error.**
+**A:** It reads `maxAchievableForwardVelocity` from your `ForesightConfig`. Finish [Foresight tuning](/docs/pathing/tuning/foresight) and paste its values into `Constants.java` first.
+
+For more, see [Troubleshooting](/docs/pathing/faq).

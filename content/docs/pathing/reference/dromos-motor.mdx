@@ -1,0 +1,82 @@
+---
+title: DromosMotor
+description: A mechanism motor that skips hub writes that change nothing
+icon: Cog
+---
+
+Every `setPower` is its own trip to a hub, even when the power barely changed. On a robot with lifts, intakes and flywheels, those writes add whole milliseconds to the loop that Pedro's follower shares. `DromosMotor` is a drop-in `DcMotorEx` that only sends writes that matter.
+
+<Callout title="Mechanisms only" type="warning">
+    Don't wrap your drive motors. Pedro's `Mecanum` already caches its own motor writes; tune that with `MecanumConfig.powerThreshold` (default 0.01).
+</Callout>
+
+## Use
+
+```java title="Lift.java"
+import me.munchem.electrodromos.hardware.DromosMotor;
+
+public class Lift {
+    private final DromosMotor motor;
+
+    public Lift(HardwareMap hardwareMap) {
+        motor = new DromosMotor(hardwareMap, "lift");
+        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
+
+    public void update(double power) {
+        motor.setPower(power);   // skipped when it wouldn't change anything
+    }
+}
+```
+
+```java title="MyTeleOp.java"
+@Override
+public void loop() {
+    lift.update(gamepad1.right_trigger - gamepad1.left_trigger);
+    follower.manual(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+    follower.update();   // Pedro + ElectroDromos, once per loop
+}
+```
+
+You can also wrap a motor you already have: `new DromosMotor(existingDcMotorEx)`.
+
+## What gets skipped
+
+| Call | Sent to the hub when |
+|---|---|
+| `setPower(p)` | The change is at least the threshold (0.01), **or** the sign flips, **or** `p` is exactly 0 or ±1 |
+| `setVelocity(v)` | `v` changed |
+| `setTargetPosition(t)` | `t` changed |
+| `setZeroPowerBehavior(z)` | `z` changed |
+| Everything else | Always |
+
+A skipped change never drifts: the comparison is against what the hub actually has, so the motor is never more than one threshold away from what you asked for.
+
+## What resets the cache
+
+Some calls can stop or re-point the motor behind the cache's back, so they make the next power or velocity write go through no matter what:
+
+- `setMode(...)`, including `STOP_AND_RESET_ENCODER`
+- `setDirection(...)` with a new direction
+- `setMotorEnable()`, `setMotorDisable()`, `setPowerFloat()`
+- switching between `setPower` and `setVelocity`
+
+If you write to the raw motor through `motor.inner()`, call `motor.invalidate()` afterwards.
+
+## Current reads
+
+`getCurrent(...)` is a separate hub read that bulk caching never covers. `DromosMotor` reuses the last reading for 100 ms.
+
+## Settings
+
+```java
+motor.setPowerThreshold(0.005);  // smaller steps for delicate mechanisms (0 sends every change)
+motor.setCurrentCacheMs(20);     // fresher current for stall detection (0 reads every time)
+```
+
+## Limits
+
+- **Tiny corrections can be skipped.** A holding PID that makes very small corrections sees up to 0.01 of error. Lower the threshold for that mechanism.
+- **Current can be up to 100 ms old**, which slows current-based stall detection. Lower `setCurrentCacheMs`.
+- **`setVelocity(rate, unit)` is not cached.** Use `setVelocity(rate)` in ticks per second to get caching.
+- **Position and velocity reads aren't cached here.** Turn on bulk caching (`AUTO` mode) so they come from one bulk read.

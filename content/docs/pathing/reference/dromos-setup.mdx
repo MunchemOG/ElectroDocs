@@ -1,0 +1,53 @@
+---
+title: Dromos & DromosConfig
+description: How ElectroDromos plugs into Pedro Pathing's Follower
+icon: Settings2
+---
+
+ElectroDromos never replaces Pedro's `Follower`. You still build it with `new Follower(localizer, drivetrain, algorithm)`. A `Dromos` wraps the localizer and drivetrain on the way in:
+
+```java title="Constants.java"
+public static Follower create(HardwareMap h) {
+    Dromos dromos = new Dromos(h, dromosConfig);
+    return new Follower(
+        dromos.localizer(new PinpointLocalizer(h, localizerConfig)),  // Pedro localizer, wrapped
+        dromos.drivetrain(new Mecanum(h, drivetrainConfig)),          // Pedro drivetrain, wrapped
+        new Foresight(foresightConfig)                               // Pedro algorithm, untouched
+    );
+}
+```
+
+| Call | Returns |
+|---|---|
+| `dromos.localizer(localizer)` | A `DromosLocalizer`. Once per loop it ticks the [loop timer](/docs/pathing/reference/loop-timer) before your localizer reads its sensors. |
+| `dromos.drivetrain(drivetrain)` | A `VoltageCompensatedDrivetrain` when [voltage compensation](/docs/pathing/reference/voltage-compensation) is on; otherwise your drivetrain, unchanged. |
+| `new Dromos(h)` | Same as passing the default `DromosConfig`. |
+
+## DromosConfig
+
+`DromosConfig` works like Pedro's configs: set its `ConfigVar`s in a lambda.
+
+```java title="Constants.java"
+public static DromosConfig dromosConfig = new DromosConfig(c -> {
+    c.voltageCompensation.set(true);
+    c.nominalVoltage.set(12.4);
+});
+```
+
+| Option | Default | What it does |
+|---|---|---|
+| `voltageCompensation` | `true` | Scales path-following and holding power by `nominalVoltage / battery`. See [Voltage Compensation](/docs/pathing/reference/voltage-compensation). |
+| `nominalVoltage` | `12.0` | The battery voltage your Pedro tune was made at. Must be positive. Find it with the [Voltage Compensation Tuner](/docs/pathing/reference/voltage-tuner). |
+
+## Reaching Pedro's pieces
+
+`follower.localizer` and `follower.drivetrain` hold ElectroDromos's wrappers. Call `inner()` to get Pedro's object back:
+
+```java
+PinpointLocalizer pinpoint = (PinpointLocalizer) ((DromosLocalizer) follower.localizer).inner();
+Mecanum mecanum = (Mecanum) ((VoltageCompensatedDrivetrain) follower.drivetrain).inner();
+```
+
+## Tuning is unaffected
+
+Pedro's AutoTune procedures build their own localizer and drivetrain from your configs, so ElectroDromos never runs during Pedro tuning. Tune exactly as [Pedro's tuning guide](/docs/pathing/tuning) describes.

@@ -1,0 +1,43 @@
+---
+title: Tuning
+---
+
+import {Step, Steps} from "fumadocs-ui/components/steps";
+import Link from "next/link";
+
+Pedro Pathing utilizes AutoTune, a robot-hosted webpage that allows for easy tuning of your robot's drivetrain, localizer, and the Foresight algorithm.
+
+Please ensure you properly [installed](/docs/pathing/installation) Pedro Pathing and ElectroDromos before continuing.
+
+Tuning is Pedro's. ElectroDromos never runs inside Pedro's tuners, so tune exactly as Pedro describes, then add one ElectroDromos step at the end.
+
+<Callout title="Tip" type="info">
+    Tune with a charged battery, and don't swap batteries partway through Foresight tuning.
+</Callout>
+
+The following steps will guide you through tuning your robot:
+
+<Steps>
+    <Step>
+        <h3><Link href="/docs/pathing/tuning/drivetrain/mecanum">Drivetrain</Link></h3>
+
+        Setting constants for your drivetrain such as your motor names and directions.
+    </Step>
+    <Step>
+        <h3>
+            <Link href="/docs/pathing/tuning/localization">Localization</Link>
+        </h3>
+
+        Tuning your localizer, which allows for your robot to know its location on the field.
+    </Step>
+    <Step>
+        <h3><Link href="/docs/pathing/tuning/foresight">Foresight</Link></h3>
+
+        Tuning Foresight, which is the built-in algorithm that allows your robot to follow paths accurately.
+    </Step>
+    <Step>
+        <h3><Link href="/docs/pathing/reference/voltage-tuner">Voltage Compensation (ElectroDromos)</Link></h3>
+
+        Finding `nominalVoltage`, the battery voltage your Pedro tune was made at, so paths drive the same on every battery.
+    </Step>
+</Steps>

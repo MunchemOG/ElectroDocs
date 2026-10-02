@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "index",
+    "prerequisites",
+    "installation",
+    "tuning",
+    "faq",
+    "pedro3",
+    "---Guide---",
+    "...guide",
+    "...reference",
+    "---Other---",
+    "branding"
+  ],
+  "root": true,
+  "title": "ElectroDromos",
+  "description": "Add-ons for Pedro Pathing"
+}
